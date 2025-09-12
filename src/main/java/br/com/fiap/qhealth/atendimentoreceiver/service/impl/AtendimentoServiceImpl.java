@@ -2,6 +2,7 @@ package br.com.fiap.qhealth.atendimentoreceiver.service.impl;
 
 import br.com.fiap.qhealth.atendimentoreceiver.dto.AtendimentoEvent;
 import br.com.fiap.qhealth.atendimentoreceiver.dto.AtendimentoRequest;
+import br.com.fiap.qhealth.atendimentoreceiver.exception.AtendimentoException;
 import br.com.fiap.qhealth.atendimentoreceiver.messaging.AtendimentoProducer;
 import br.com.fiap.qhealth.atendimentoreceiver.model.Atendimento;
 import br.com.fiap.qhealth.atendimentoreceiver.repository.AtendimentoRepository;
@@ -20,9 +21,7 @@ import java.util.UUID;
 public class AtendimentoServiceImpl implements AtendimentoService {
 
     private final AtendimentoRepository atendimentoRepository;
-
     private final AtendimentoProducer atendimentoProducer;
-
 
     @Override
     public UUID iniciar(AtendimentoRequest request) {
@@ -49,8 +48,8 @@ public class AtendimentoServiceImpl implements AtendimentoService {
             return atendimentoSalvo.getId();
 
         } catch (Exception e) {
-            log.error("Erro ao entrar na fila de atendimento para o paciente {}: {}", request.getPacienteId(), e.getMessage(), e);
-            throw new RuntimeException("Não foi possível entrar na fila de atendimento. Tente novamente mais tarde.");
+            log.error("Erro ao iniciar atendimento para paciente {}: {}", request.getPacienteId(), e.getMessage(), e);
+            throw new AtendimentoException("Não foi possível iniciar o atendimento. Tente novamente mais tarde.", e);
         }
     }
 
@@ -59,10 +58,8 @@ public class AtendimentoServiceImpl implements AtendimentoService {
         try {
             return atendimentoRepository.findAll();
         } catch (Exception e) {
-            log.error("Erro ao buscar fila: {}", e.getMessage(), e);
-            throw new RuntimeException("Erro ao buscar fila.");
+            log.error("Erro ao buscar fila de atendimentos: {}", e.getMessage(), e);
+            throw new AtendimentoException("Erro ao buscar fila de atendimentos.", e);
         }
     }
-
 }
-
