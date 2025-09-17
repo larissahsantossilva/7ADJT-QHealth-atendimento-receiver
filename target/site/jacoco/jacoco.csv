@@ -1,16 +1,2 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-AtendimentoReceiver,br.com.fiap.qhealth.atendimentoreceiver.controller,AtendimentoController,0,45,0,2,0,11,0,5,0,4
-AtendimentoReceiver,br.com.fiap.qhealth.atendimentoreceiver.dto,AtendimentoEvent,263,31,46,0,8,3,41,3,18,3
-AtendimentoReceiver,br.com.fiap.qhealth.atendimentoreceiver.dto,AtendimentoRequest,0,60,0,0,0,9,0,13,0,13
-AtendimentoReceiver,br.com.fiap.qhealth.atendimentoreceiver.dto,AtendimentoRequest.AtendimentoRequestBuilder,13,42,0,0,0,1,1,7,1,7
-AtendimentoReceiver,br.com.fiap.qhealth.atendimentoreceiver.dto,AtendimentoEvent.AtendimentoEventBuilder,19,56,0,0,0,1,1,9,1,9
-AtendimentoReceiver,br.com.fiap.qhealth.atendimentoreceiver.model,Atendimento.AtendimentoBuilder,11,28,0,0,0,1,1,5,1,5
-AtendimentoReceiver,br.com.fiap.qhealth.atendimentoreceiver.model,Atendimento,15,31,0,0,2,6,4,5,4,5
-AtendimentoReceiver,br.com.fiap.qhealth.atendimentoreceiver.configuration,OpenApiConfiguration,0,25,0,0,0,7,0,2,0,2
-AtendimentoReceiver,br.com.fiap.qhealth.atendimentoreceiver.configuration,RabbitMQConfig,0,35,0,0,0,9,0,6,0,6
-AtendimentoReceiver,br.com.fiap.qhealth.atendimentoreceiver.messaging,AtendimentoProducer,0,13,0,0,0,3,0,2,0,2
-AtendimentoReceiver,br.com.fiap.qhealth.atendimentoreceiver.service.impl,AtendimentoServiceImpl,0,101,0,0,0,25,0,4,0,4
 AtendimentoReceiver,br.com.fiap.qhealth.atendimentoreceiver,AtendimentoReceiverApplication,5,3,0,0,2,1,1,1,1,1
-AtendimentoReceiver,br.com.fiap.qhealth.atendimentoreceiver.exception,AtendimentoException,4,5,0,0,2,2,1,1,1,1
-AtendimentoReceiver,br.com.fiap.qhealth.atendimentoreceiver.exception,GlobalExceptionHandler,61,7,0,0,12,2,2,2,2,2
-AtendimentoReceiver,br.com.fiap.qhealth.atendimentoreceiver.utils,AtendimentoConstants,0,3,0,0,0,2,0,1,0,1
