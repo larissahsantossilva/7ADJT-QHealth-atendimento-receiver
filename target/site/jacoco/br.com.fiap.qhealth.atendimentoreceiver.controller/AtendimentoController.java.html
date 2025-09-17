@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AtendimentoController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">AtendimentoReceiver</a> &gt; <a href="index.source.html" class="el_package">br.com.fiap.qhealth.atendimentoreceiver.controller</a> &gt; <span class="el_source">AtendimentoController.java</span></div><h1>AtendimentoController.java</h1><pre class="source lang-java linenums">package br.com.fiap.qhealth.atendimentoreceiver.controller;
+
+import br.com.fiap.qhealth.atendimentoreceiver.dto.AtendimentoRequest;
+import br.com.fiap.qhealth.atendimentoreceiver.model.Atendimento;
+import br.com.fiap.qhealth.atendimentoreceiver.service.AtendimentoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
+
+import static br.com.fiap.qhealth.atendimentoreceiver.utils.AtendimentoConstants.*;
+
+<span class="fc" id="L23">@Slf4j</span>
+@RestController
+@Tag(name = &quot;AtendimentoController&quot;, description = &quot;Controller para iniciar atendimento.&quot;)
+@RequestMapping(value = AtendimentoController.V1_ATENDIMENTOS,
+        produces = &quot;application/json&quot;)
+<span class="fc" id="L28">@RequiredArgsConstructor</span>
+public class AtendimentoController {
+
+    static final String V1_ATENDIMENTOS = &quot;/api/v1/atendimentos&quot;;
+
+    private final AtendimentoService atendimentoService;
+
+    @Operation(
+            description = &quot;Inicia atendimento.&quot;,
+            summary = &quot;Inicia fila para atendimento.&quot;,
+            responses = {
+                    @ApiResponse(
+                            description = ATENDIMENTO_CRIADO_COM_SUCESSO,
+                            responseCode = HTTP_STATUS_CODE_201,
+                            content = @Content(mediaType = &quot;application/json&quot;, schema = @Schema(implementation = String.class))
+                    ),
+                    @ApiResponse(
+                            description = ERRO_AO_CRIAR_ATENDIMENTO,
+                            responseCode = HTTP_STATUS_CODE_422,
+                            content = @Content(mediaType = &quot;application/json&quot;, schema = @Schema(implementation = String.class))
+                    ),
+            }
+    )
+    @PostMapping
+    public ResponseEntity&lt;UUID&gt; criar(@Valid @RequestBody AtendimentoRequest request) {
+<span class="fc" id="L53">        log.info(&quot;POST | {} | Iniciando atendimento &quot;, V1_ATENDIMENTOS);</span>
+<span class="fc" id="L54">        UUID atendimentoId = atendimentoService.iniciar(request);</span>
+<span class="fc" id="L55">        return ResponseEntity.status(HttpStatus.CREATED).body(atendimentoId);</span>
+    }
+
+    @Operation(
+            description = &quot;Inicia busca de fila de atendimento.&quot;,
+            summary = &quot;Busca fila de atendimento.&quot;,
+            responses = {
+                    @ApiResponse(
+                            description = OK,
+                            responseCode = HTTP_STATUS_CODE_200,
+                            content = @Content(mediaType = &quot;application/json&quot;, schema = @Schema(implementation = Atendimento.class))
+                    ),
+                    @ApiResponse(
+                            description = FILA_ATENDIMENTO_VAZIA,
+                            responseCode = HTTP_STATUS_CODE_204,
+                            content = @Content(mediaType = &quot;application/json&quot;)
+                    )
+            }
+    )
+    @GetMapping
+    public ResponseEntity&lt;List&lt;Atendimento&gt;&gt; buscarTodos() {
+<span class="fc" id="L76">        log.info(&quot;GET | {} | Iniciando busca &quot;, V1_ATENDIMENTOS);</span>
+<span class="fc" id="L77">        List&lt;Atendimento&gt; all = atendimentoService.getAll();</span>
+<span class="fc" id="L78">        log.info(&quot;GET | {} | Finalizando busca &quot;, V1_ATENDIMENTOS);</span>
+
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        if (all.isEmpty()) {</span>
+<span class="fc" id="L81">            return ResponseEntity.noContent().build();</span>
+        }
+
+<span class="fc" id="L84">        return ResponseEntity.ok(all);</span>
+    }
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

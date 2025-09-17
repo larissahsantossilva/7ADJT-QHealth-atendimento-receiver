@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AtendimentoRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">AtendimentoReceiver</a> &gt; <a href="index.source.html" class="el_package">br.com.fiap.qhealth.atendimentoreceiver.dto</a> &gt; <span class="el_source">AtendimentoRequest.java</span></div><h1>AtendimentoRequest.java</h1><pre class="source lang-java linenums">package br.com.fiap.qhealth.atendimentoreceiver.dto;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.*;
+
+import java.util.UUID;
+
+import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
+
+@Getter
+<span class="fc" id="L14">@Setter</span>
+<span class="fc" id="L15">@NoArgsConstructor</span>
+<span class="fc" id="L16">@AllArgsConstructor</span>
+<span class="pc" id="L17">@Builder</span>
+@Schema(description = &quot;DTO para novo atendimento&quot;)
+public class AtendimentoRequest {
+
+    @NotNull(message = &quot;Id do paciente não pode ser nulo.&quot;)
+    @Schema(description = &quot;Id do paciente&quot;, requiredMode = REQUIRED)
+<span class="fc" id="L23">    private UUID pacienteId;</span>
+
+    @NotNull(message = &quot;Fumante não pode ser nulo.&quot;)
+    @Schema(description = &quot;É fumante?&quot;, requiredMode = REQUIRED)
+<span class="fc" id="L27">    private boolean fumante;</span>
+
+    @NotNull(message = &quot;Grávida não pode ser nulo.&quot;)
+    @Schema(description = &quot;Está grávida?&quot;, requiredMode = REQUIRED)
+<span class="fc" id="L31">    private boolean gravida;</span>
+
+    @NotNull(message = &quot;Diabético não pode ser nulo.&quot;)
+    @Schema(description = &quot;É diabetico/a?&quot;, requiredMode = REQUIRED)
+<span class="fc" id="L35">    private boolean diabetico;</span>
+
+    @NotNull(message = &quot;Hipertenso não pode ser nulo.&quot;)
+    @Schema(description = &quot;É hipertenso/a&quot;, requiredMode = REQUIRED)
+<span class="fc" id="L39">    private boolean hipertenso;</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

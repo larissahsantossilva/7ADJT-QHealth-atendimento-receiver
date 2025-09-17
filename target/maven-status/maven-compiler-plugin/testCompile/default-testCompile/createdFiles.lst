@@ -1,1 +1,5 @@
-br/com/fiap/qhealth/atendimentoreceiver/AtendimentoReceiverApplicationTests.class
+br\com\fiap\qhealth\atendimentoreceiver\utils\AtendimentoConstantsTest.class
+br\com\fiap\qhealth\atendimentoreceiver\service\impl\AtendimentoServiceImplTest.class
+br\com\fiap\qhealth\atendimentoreceiver\messaging\AtendimentoProducerTest.class
+br\com\fiap\qhealth\atendimentoreceiver\controller\AtendimentoControllerTest.class
+br\com\fiap\qhealth\atendimentoreceiver\AtendimentoReceiverApplicationTests.class
