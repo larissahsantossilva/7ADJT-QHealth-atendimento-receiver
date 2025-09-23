@@ -18,9 +18,9 @@ import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
 @Schema(description = "DTO para novo atendimento")
 public class AtendimentoRequest {
 
-    @NotNull(message = "Id do paciente não pode ser nulo.")
-    @Schema(description = "Id do paciente", requiredMode = REQUIRED)
-    private UUID pacienteId;
+    @NotNull(message = "CPF do paciente não pode ser nulo.")
+    @Schema(description = "CPF do paciente", requiredMode = REQUIRED)
+    private String cpf;
 
     @NotNull(message = "Fumante não pode ser nulo.")
     @Schema(description = "É fumante?", requiredMode = REQUIRED)
@@ -37,5 +37,4 @@ public class AtendimentoRequest {
     @NotNull(message = "Hipertenso não pode ser nulo.")
     @Schema(description = "É hipertenso/a", requiredMode = REQUIRED)
     private boolean hipertenso;
-
 }

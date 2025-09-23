@@ -13,13 +13,11 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AtendimentoEvent {
-
     private UUID id;
-    private UUID pacienteId;
+    private String cpf;
     private boolean fumante;
     private boolean gravida;
     private boolean diabetico;
     private boolean hipertenso;
     private LocalDateTime dataCriacao;
-
 }

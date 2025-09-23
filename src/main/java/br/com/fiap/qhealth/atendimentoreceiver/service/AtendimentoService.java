@@ -7,9 +7,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface AtendimentoService {
-
     UUID iniciar(AtendimentoRequest request);
-
     List<Atendimento> getAll();
-
 }

@@ -34,22 +34,22 @@ class AtendimentoServiceImplTest {
 
     @Test
     void deveIniciarAtendimentoComSucesso() {
-        UUID pacienteId = UUID.randomUUID();
+        String cpf = "12345678900";
         UUID atendimentoId = UUID.randomUUID();
 
         AtendimentoRequest request = AtendimentoRequest.builder()
-                .pacienteId(pacienteId)
+                .cpf(cpf)
                 .fumante(true)
                 .gravida(false)
                 .diabetico(true)
                 .hipertenso(false)
-                .build();
+            .build();
 
         Atendimento atendimentoSalvo = Atendimento.builder()
                 .id(atendimentoId)
-                .pacienteId(pacienteId)
+                .cpf(cpf)
                 .dataCriacao(LocalDateTime.now())
-                .build();
+            .build();
 
         when(atendimentoRepository.save(any(Atendimento.class))).thenReturn(atendimentoSalvo);
 
@@ -64,8 +64,8 @@ class AtendimentoServiceImplTest {
     @Test
     void deveLancarExcecaoAoIniciarAtendimento() {
         AtendimentoRequest request = AtendimentoRequest.builder()
-                .pacienteId(UUID.randomUUID())
-                .build();
+                .cpf("12345678900")
+            .build();
 
         when(atendimentoRepository.save(any(Atendimento.class)))
                 .thenThrow(new RuntimeException("Erro no banco"));
@@ -81,9 +81,9 @@ class AtendimentoServiceImplTest {
     void deveRetornarTodosAtendimentos() {
         Atendimento atendimento = Atendimento.builder()
                 .id(UUID.randomUUID())
-                .pacienteId(UUID.randomUUID())
+                .cpf("12345678900")
                 .dataCriacao(LocalDateTime.now())
-                .build();
+            .build();
 
         when(atendimentoRepository.findAll()).thenReturn(List.of(atendimento));
 

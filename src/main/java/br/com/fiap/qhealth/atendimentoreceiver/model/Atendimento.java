@@ -16,16 +16,14 @@ import static jakarta.persistence.GenerationType.AUTO;
 @Builder
 @Table(name = "atendimento", schema = "atendimento_receiver")
 public class Atendimento {
-
     @Id
     @GeneratedValue(strategy = AUTO)
     @Column(name = "id", nullable = false, unique = true)
     private UUID id;
 
-    @Column(name = "paciente_id", nullable = false)
-    private UUID pacienteId;
+    @Column(name = "cpf", nullable = false)
+    private String cpf;
 
     @Column(name = "data_criacao", nullable = false)
     private LocalDateTime dataCriacao = LocalDateTime.now();
-
 }

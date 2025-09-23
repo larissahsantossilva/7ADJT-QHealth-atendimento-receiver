@@ -33,7 +33,7 @@ class AtendimentoControllerTest {
         MockitoAnnotations.openMocks(this);
 
         request = new AtendimentoRequest();
-        request.setPacienteId(UUID.randomUUID());
+        request.setCpf("12345678900");
         request.setFumante(false);
         request.setGravida(false);
         request.setDiabetico(false);
@@ -56,9 +56,9 @@ class AtendimentoControllerTest {
     void deveRetornarListaDeAtendimentos() {
         Atendimento atendimento = Atendimento.builder()
                 .id(UUID.randomUUID())
-                .pacienteId(UUID.randomUUID())
+                .cpf("12345678900")
                 .dataCriacao(LocalDateTime.now())
-                .build();
+            .build();
 
         when(atendimentoService.getAll()).thenReturn(List.of(atendimento));
 

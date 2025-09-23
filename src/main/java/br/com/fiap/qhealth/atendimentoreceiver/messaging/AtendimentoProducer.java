@@ -9,15 +9,13 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class AtendimentoProducer {
-
     private final RabbitTemplate rabbitTemplate;
 
     public void send(AtendimentoEvent event) {
         rabbitTemplate.convertAndSend(
-                RabbitMQConfig.EXCHANGE,
-                RabbitMQConfig.ROUTING_KEY,
-                event
+            RabbitMQConfig.EXCHANGE,
+            RabbitMQConfig.ROUTING_KEY,
+            event
         );
     }
-
 }

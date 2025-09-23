@@ -23,30 +23,27 @@ import static br.com.fiap.qhealth.atendimentoreceiver.utils.AtendimentoConstants
 @Slf4j
 @RestController
 @Tag(name = "AtendimentoController", description = "Controller para iniciar atendimento.")
-@RequestMapping(value = AtendimentoController.V1_ATENDIMENTOS,
-        produces = "application/json")
+@RequestMapping(value = AtendimentoController.V1_ATENDIMENTOS, produces = "application/json")
 @RequiredArgsConstructor
 public class AtendimentoController {
-
     static final String V1_ATENDIMENTOS = "/api/v1/atendimentos";
-
     private final AtendimentoService atendimentoService;
 
     @Operation(
-            description = "Inicia atendimento.",
-            summary = "Inicia fila para atendimento.",
-            responses = {
-                    @ApiResponse(
-                            description = ATENDIMENTO_CRIADO_COM_SUCESSO,
-                            responseCode = HTTP_STATUS_CODE_201,
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))
-                    ),
-                    @ApiResponse(
-                            description = ERRO_AO_CRIAR_ATENDIMENTO,
-                            responseCode = HTTP_STATUS_CODE_422,
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))
-                    ),
-            }
+        description = "Inicia atendimento.",
+        summary = "Inicia fila para atendimento.",
+        responses = {
+            @ApiResponse(
+                description = ATENDIMENTO_CRIADO_COM_SUCESSO,
+                responseCode = HTTP_STATUS_CODE_201,
+                content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))
+            ),
+            @ApiResponse(
+                description = ERRO_AO_CRIAR_ATENDIMENTO,
+                responseCode = HTTP_STATUS_CODE_422,
+                content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))
+            )
+        }
     )
     @PostMapping
     public ResponseEntity<UUID> criar(@Valid @RequestBody AtendimentoRequest request) {
@@ -56,20 +53,20 @@ public class AtendimentoController {
     }
 
     @Operation(
-            description = "Inicia busca de fila de atendimento.",
-            summary = "Busca fila de atendimento.",
-            responses = {
-                    @ApiResponse(
-                            description = OK,
-                            responseCode = HTTP_STATUS_CODE_200,
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = Atendimento.class))
-                    ),
-                    @ApiResponse(
-                            description = FILA_ATENDIMENTO_VAZIA,
-                            responseCode = HTTP_STATUS_CODE_204,
-                            content = @Content(mediaType = "application/json")
-                    )
-            }
+        description = "Inicia busca de fila de atendimento.",
+        summary = "Busca fila de atendimento.",
+        responses = {
+            @ApiResponse(
+                description = OK,
+                responseCode = HTTP_STATUS_CODE_200,
+                content = @Content(mediaType = "application/json", schema = @Schema(implementation = Atendimento.class))
+            ),
+            @ApiResponse(
+                description = FILA_ATENDIMENTO_VAZIA,
+                responseCode = HTTP_STATUS_CODE_204,
+                content = @Content(mediaType = "application/json")
+            )
+        }
     )
     @GetMapping
     public ResponseEntity<List<Atendimento>> buscarTodos() {
@@ -80,9 +77,7 @@ public class AtendimentoController {
         if (all.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
-
         return ResponseEntity.ok(all);
     }
-
 }
 

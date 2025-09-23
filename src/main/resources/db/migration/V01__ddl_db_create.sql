@@ -9,7 +9,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Tabela de atendimento
 CREATE TABLE atendimento (
-                        id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-                        paciente_id UUID NOT NULL,
-                        data_criacao TIMESTAMP NOT NULL
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    cpf VARCHAR(11) NOT NULL,
+    data_criacao TIMESTAMP NOT NULL
 );

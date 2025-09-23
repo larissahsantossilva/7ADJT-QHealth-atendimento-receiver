@@ -16,5 +16,4 @@ public class AtendimentoConstants {
 
     public static final String FILA_ATENDIMENTO_VAZIA = "Fila se encontra vazia";
     public static final String HTTP_STATUS_CODE_204 = "204";
-
 }

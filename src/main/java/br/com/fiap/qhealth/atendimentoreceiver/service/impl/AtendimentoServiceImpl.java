@@ -19,7 +19,6 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class AtendimentoServiceImpl implements AtendimentoService {
-
     private final AtendimentoRepository atendimentoRepository;
     private final AtendimentoProducer atendimentoProducer;
 
@@ -27,28 +26,27 @@ public class AtendimentoServiceImpl implements AtendimentoService {
     public UUID iniciar(AtendimentoRequest request) {
         try {
             Atendimento atendimento = Atendimento.builder()
-                    .pacienteId(request.getPacienteId())
+                    .cpf(request.getCpf())
                     .dataCriacao(LocalDateTime.now())
-                    .build();
+                .build();
 
             Atendimento atendimentoSalvo = atendimentoRepository.save(atendimento);
 
             AtendimentoEvent event = AtendimentoEvent.builder()
                     .id(atendimentoSalvo.getId())
-                    .pacienteId(request.getPacienteId())
+                    .cpf(request.getCpf())
                     .fumante(request.isFumante())
                     .gravida(request.isGravida())
                     .diabetico(request.isDiabetico())
                     .hipertenso(request.isHipertenso())
                     .dataCriacao(atendimentoSalvo.getDataCriacao())
-                    .build();
+                .build();
 
             atendimentoProducer.send(event);
-
             return atendimentoSalvo.getId();
 
         } catch (Exception e) {
-            log.error("Erro ao iniciar atendimento para paciente {}: {}", request.getPacienteId(), e.getMessage(), e);
+            log.error("Erro ao iniciar atendimento para paciente de CPF {}: {}", request.getCpf(), e.getMessage(), e);
             throw new AtendimentoException("Não foi possível iniciar o atendimento. Tente novamente mais tarde.", e);
         }
     }
